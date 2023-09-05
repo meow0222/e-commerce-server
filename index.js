@@ -49,20 +49,28 @@ app.listen(port, (err)=>{
     console.log(`Server listening on http://localhost:${port}`);
 });
 
-// ----------------------------------- TODOs -------------------------------------------
 
 app.get('/api/products', async (req, res) => {
     try {
       const productsData = await fs.promises.readFile('./api/products.json');
       const products = JSON.parse(productsData);
-    //   console.log(todos);
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.json(products);
     } catch (error) {
       console.error('Error loading todos:', error);
       res.status(500).json({ error: 'Error loading todos' });
     }
-  });
+});
+
+// app.post('/data/product-data', async (req, res) => {
+//   try {
+//     const dataToWrite = JSON.stringify(req.body, null, 2);
+//     fs.writeFileSync('data.json', dataToWrite);
+//     res.json({ message: 'Data written successfully' });
+//   } catch (error) {
+//     res.status(500).json({ message: 'Error writing data', error: error.message });
+//   }
+// });
   
   /*
   app.put('/api/todos', async (req, res) => {
@@ -77,22 +85,7 @@ app.get('/api/products', async (req, res) => {
     }
   });
   
-  app.post('/api/todos', async (req, res) => {
-    const newTodo = req.body;
-    try {
-    console.log(req.body);
-      const todosData = await fs.promises.readFile('./api/todos.json');
-     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-      const todos = JSON.parse(todosData);
-      todos.push(newTodo);
-    await fs.promises.writeFile('./api/todos.json', JSON.stringify(todos, null, 2));
-     
-      res.status(200).json(newTodo);
-    } catch (error) {
-      console.error('Error adding new todo:', error);
-      res.status(500).json({ error: 'Error adding new todo' });
-    }
-  });
+ 
 // ------------------------------------ END --------------------------------------------
 */
 
